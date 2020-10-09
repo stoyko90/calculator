@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>Calculator</title>
+<style> 
+    #calc {
+        height:480px;
+        width:480px;
+        background-color: gray;
+        
+    }
+    body {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%); 
+        background-image:url("https://images4.alphacoders.com/225/22564.jpg"); 
+    }
+    .display {
+        display: flex;
+        flex-wrap: nowrap;
+        
+        height: 160px;
+        
+        
+    }
+    .firstRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .secondRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .thirdRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .fourthRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .butt {
+        width: 80px;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    
+    #dis {
+        text-align: right;
+    }
+    
+</style>
+</head>
+
+<body>  
+    <div id="calc">
+        <div class="display">
+            <input type="text" id="dis" maxlength="20" style="width: 480px; font-size: 30px;">
+        </div>
+
+        <div class="firstRow">
+            <input id="seven" class="butt" type="button" value="7">
+            <input id="eight" class="butt" type="button" value="8">
+            <input class="butt" type="button" value="9">
+            <input class="butt" type="button" value="/">
+            <input class="butt" type="button" value="Clear" style="width: 160px;">
+        </div>
+        <div class="secondRow">
+            <input class="butt" type="button" value="4">
+            <input class="butt" type="button" value="5">
+            <input class="butt" type="button" value="6">
+            <input class="butt" type="button" value="*">
+            <input class="butt" type="button" value="(">
+            <input class="butt" type="button" value=")">
+        </div>
+
+        <div class="thirdRow">
+            <input class="butt" type="button" value="1">
+            <input class="butt" type="button" value="2">
+            <input class="butt" type="button" value="3">
+            <input class="butt" type="button" value="-">
+            <input class="butt" type="button" value="x^2">
+            <input class="butt" type="button" value="sqrt">
+        </div>
+
+        <div class="fourthRow">
+            <input class="butt" type="button" value="0">
+            <input class="butt" type="button" value=".">
+            <input class="butt" type="button" value="%">
+            <input class="butt" type="button" value="+">
+            <input class="butt" type="button" value="=" style="width: 160px;">
+        </div>
+    </div>
+
+    <script> 
+        function add(a, b) {
+        return a + b;
+        }
+        function subtract(a, b) {
+            return a - b;
+        }
+        function multiply(a, b) {
+            return a * b;
+        }
+        function divide(a, b) {
+            return a / b;
+        }
+        function operate(operator, a, b) {
+            return operator(a, b);
+        }
+
+        const display = document.getElementById("dis");
+        
+        function funclick() {
+            return display.value += this.value; 
+        }
+        const buttons = Array.from(document.querySelectorAll(".butt"));
+        buttons.forEach(button => button.addEventListener("click", funclick));
+       
+    </script>
+</body>
+</html>
