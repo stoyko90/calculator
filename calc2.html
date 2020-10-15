@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>Calculator</title>
+<style> 
+    html {
+
+        background-image:url("https://images4.alphacoders.com/225/22564.jpg"); 
+        background-repeat: no-repeat;  
+        background-position: center center;      
+        background-size: 100% 100%;
+        height: 100%;
+    }
+    #calc {
+        height:480px;
+        width:480px;
+        background-color: gray;
+        
+    }
+    body {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%); 
+    }
+    .display {
+        display: flex;
+        flex-wrap: nowrap;
+        
+        height: 160px;
+        
+        
+    }
+    .firstRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .secondRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .thirdRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .fourthRow {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 80px;
+        
+    }
+    .num, .nonum {
+        width: 80px;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    
+    #dis {
+        text-align: right;
+    }
+    
+</style>
+</head>
+
+<body>  
+    <div id="calc">
+        <div class="display">
+            <input type="text" id="dis" maxlength="50" style="width: 480px; font-size: 30px;">
+        </div>
+
+        <div class="firstRow">
+            <input class="num" type="button" value="7">
+            <input class="num" type="button" value="8">
+            <input class="num" type="button" value="9">
+            <input class="nonum" type="button" value="/">
+            <input class="nonum" type="button" value="Clear" style="width: 160px;">
+        </div>
+        <div class="secondRow">
+            <input class="num" type="button" value="4">
+            <input class="num" type="button" value="5">
+            <input class="num" type="button" value="6">
+            <input class="nonum" type="button" value="*">
+            <input class="nonum" type="button" value="BackSpace" style="width: 160px;">
+        </div>
+
+        <div class="thirdRow">
+            <input class="num" type="button" value="1">
+            <input class="num" type="button" value="2">
+            <input class="num" type="button" value="3">
+            <input class="nonum" type="button" value="-">
+            <input class="nonum" type="button" value="x^2">
+            <input class="nonum" type="button" value="sqrt">
+        </div>
+
+        <div class="fourthRow">
+            <input class="num" type="button" value="0">
+            <input class="num" type="button" value=".">
+            <input class="nonum" type="button" value="%">
+            <input class="nonum" type="button" value="+">
+            <input class="nonum" type="button" value="=" style="width: 160px;">
+        </div>
+    </div>
+
+    <script> 
+        function add(a, b) {
+        return a + b;
+        }
+        function subtract(a, b) {
+            return a - b;
+        }
+        function multiply(a, b) {
+            return a * b;
+        }
+        function divide(a, b) {
+            return a / b;
+        }
+        function operate(operator, a, b) {
+            return operator(a, b);
+        }
+
+        const display = document.getElementById("dis");
+        
+        let temp1 = "";
+        let temp2 = "";
+        let val = "";
+        let sign = "";
+        let result;
+
+        function func() { 
+            if (this.value === "Clear") {
+                temp1 = "";
+                temp2 = "";
+                val = "";
+                sign = "";
+                result = "";
+                display.value = "";
+            }
+            let count = 0;
+            if (this.className === "num") {
+                
+                if (count !== 0 && this.value === ".") {
+                    return false;
+                }
+                else if(this.value === "." && count === 0) {
+                    count++;
+                    val += this.value;
+                    display.value = val;
+                }
+                else {
+                    val += this.value;
+                    display.value = val;
+                }
+                
+                
+            }
+
+            
+            
+            if (this.value === "+" || this.value === "-" || this.value === "*" || this.value === "/" || this.value === "=") {                
+                 
+                if (temp1 === "") {
+                    sign = this.value;
+                    temp1 = Number(val);
+                    val = "";                    
+                }
+                else {
+                    temp2 = Number(val);
+                    display.value = "";
+                    if (sign === "+") {
+                        result = operate(add, temp1, temp2);
+                    }
+                    if (sign === "-") {
+                        result = operate(subtract, temp1, temp2);
+                    }
+                    if (sign === "*") {
+                        result = operate(multiply, temp1, temp2);
+                    }
+                    if (sign === "/") {
+                        result = operate(divide, temp1, temp2);
+                    }
+                    sign = this.value;
+                
+                    temp1 = result;
+                    display.value = result;
+                    val = "";
+                }    
+            }
+            
+        }
+        const buttons = Array.from(document.querySelectorAll(".num, .nonum"));
+        buttons.forEach(function(button) {
+            
+            return button.addEventListener("click", func);
+            
+        }); 
+       
+    </script>
+</body>
+</html>
