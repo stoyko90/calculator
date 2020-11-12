@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calc.css">
+</head>
+
+<body>  
+    <div id="calc">
+        <div class="display">
+            <input type="text" id="dis" maxlength="50" style="width: 480px; font-size: 30px;">
+        </div>
+
+        <div class="firstRow">
+            <input class="num" type="button" value="7">
+            <input class="num" type="button" value="8">
+            <input class="num" type="button" value="9">
+            <input class="operate" type="button" value="/">
+            <input id="clear" class="nonum" type="button" value="Clear" style="width: 160px;">
+        </div>
+        <div class="secondRow">
+            <input class="num" type="button" value="4">
+            <input class="num" type="button" value="5">
+            <input class="num" type="button" value="6">
+            <input class="operate" type="button" value="*">
+            <input id="back" class="nonum" type="button" value="BackSpace" style="width: 160px;">
+        </div>
+
+        <div class="thirdRow">
+            <input class="num" type="button" value="1">
+            <input class="num" type="button" value="2">
+            <input class="num" type="button" value="3">
+            <input class="operate" type="button" value="-">
+            <input id="power" class="nonum" type="button" value="x^2">
+            <input id="root" class="nonum" type="button" value="sqrt">
+        </div>
+
+        <div class="fourthRow">
+            <input class="num" type="button" value="0" style="width: 160px;">
+            <input id="dot" class="num" type="button" value=".">
+            <input class="operate" type="button" value="+">
+            <input id="per" class="nonum" type="button" value="%">            
+            <input id="equal" class="nonum" type="button" value="=">
+        </div>
+    </div>
+
+    <script src="calc.js"></script>    
+</body>
+</html>
